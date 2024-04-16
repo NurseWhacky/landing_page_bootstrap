@@ -1,0 +1,10 @@
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+// @use "../../node_modules/bootstrap/scss/bootstrap.scss";
+
+.bg-darkpink {
+  background-color: $pink-900;
+}
+
+.bg-lightpink {
+  background-color: $pink-100;
+}

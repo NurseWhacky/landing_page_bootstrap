@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Basic Landing Page</title>
+    <link
+      rel="stylesheet"
+      href="styles.css"
+    />
+    <link
+      rel="stylesheet"
+      href="node_modules/@fortawesome/fontawesome-free/css/all.min.css"
+    />
+
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+  </head>
+  <body>
+    <!-- navbar w/ links -->
+    <nav class="navbar navbar-expand-lg px-2 bg-darkpink navbar-dark">
+      <div class="container-fluid">
+        <a
+          class="navbar-brand fw-bold px-2 ms-2"
+          href="#"
+          >Home
+        </a>
+        <!-- <div class="img-container bg-warning rounded-circle">
+          <img
+            class="logo-img ml-2"
+            src="assets/logo.svg"
+            alt="Il mondo di Gina logo"
+          />
+        </div> -->
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbar-menu"
+          aria-controls="navbar-menu"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="navbar-menu"
+        >
+          <!-- <div class="container-fluid"> -->
+          <ul class="navbar-nav ms-auto text-center">
+            <li class="nav-item">
+              <a
+                href="#about"
+                class="nav-link"
+                >Chi siamo</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                href="#reviews"
+                class="nav-link"
+                >Dicono di noi</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                href="#map"
+                class="nav-link"
+                >Dove ci trovi</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                href="#"
+                class="nav-link"
+              ></a>
+            </li>
+          </ul>
+          <!-- </div> -->
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero / image / description -->
+    <section id="hero">
+      <div
+        class="container d-flex p-1 bg-lightpink flex-column align-items-center"
+      >
+        <!-- <h1
+          x-data="{ message: 'Alpine dynamic content 💓' }"
+          x-text="message"
+          class="display-2"
+        ></h1> -->
+
+        <div class="hero-img-container">
+          <img
+            src="assets/images/logo.svg"
+            alt="Il mondo di Gina logo"
+            srcset=""
+            class="hero-img"
+          />
+        </div>
+        <!-- <button
+          class="btn btn-primary"
+          type="submit"
+        >
+          Contattaci!
+        </button> -->
+      </div>
+      <div class="container d-flex justify-content-center my-4">
+        <button
+          class="btn btn-primary mx-auto"
+          type="submit"
+          x-data="{ label: 'Contattaci!' }"
+          x-text="label"
+        ></button>
+      </div>
+
+      <blockquote class="blockquote text-center p-2">
+        <p>Porca madonna!</p>
+        <footer class="blockquote-footer">Dio ladro</footer>
+      </blockquote>
+    </section>
+
+    <!-- About us -->
+    <section id="about">
+      <div
+        class="container about-container d-flex p-2 flex-column align-items-center"
+      >
+        <h2 class="about-header">ABOUT US</h2>
+        <p class="about-paragraph">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt
+          voluptas nihil iusto, commodi neque aliquid beatae!
+        </p>
+      </div>
+    </section>
+
+    <!-- photogallery -->
+    <section id="gallery">
+      <div class="container">
+        <div class="img-carousel">COCK CAROUSEL</div>
+      </div>
+    </section>
+
+    <!-- google review cards -->
+    <section id="reviews">
+      <div
+        x-data="{reviews: []}"
+        x-init="
+        fetch('/assets/data/reviews.json')
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.json();
+          })
+          .then(data => {
+            reviews = data;
+          })
+          .catch(error => {
+            console.error('There was a problem fetching the reviews:', error);
+          });"
+      >
+        <div class="container mt-5">
+          <div class="row">
+            <div class="col">
+              <template
+                x-for="review in reviews"
+                :key="review.id"
+              >
+                <div class="card">
+                  <div class="card-body">
+                    <h5
+                      class="card-title"
+                      x-text="review.author"
+                    ></h5>
+                    <p
+                      class="card-text"
+                      x-text="review.text"
+                    ></p>
+                    <a :href="review.link">Link</a>
+                  </div>
+                </div>
+              </template>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="container">
+        <div class="row row-cols-1 row-cols-md-2 g-4"> -->
+      <!-- Review Card 1 -->
+      <!-- <div class="col">
+            <div class="card review-card">
+              <div class="card-body">
+                <h5 class="card-title">Review 1</h5>
+                <p class="card-text">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+                  vitae elit libero, a pharetra augue.
+                </p>
+              </div>
+            </div>
+          </div> -->
+      <!-- Review Card 2 -->
+      <!-- <div class="col">
+            <div class="card review-card">
+              <div class="card-body">
+                <h5 class="card-title">Review 2</h5>
+                <p class="card-text">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+                  vitae elit libero, a pharetra augue.
+                </p>
+              </div>
+            </div>
+          </div> -->
+      <!-- Review Card 3 -->
+      <!-- <div class="col">
+            <div class="card review-card">
+              <div class="card-body">
+                <h5 class="card-title">Review 3</h5>
+                <p class="card-text">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+                  vitae elit libero, a pharetra augue.
+                </p>
+              </div>
+            </div>
+          </div> -->
+      <!-- Review Card 4 -->
+      <!-- <div class="col">
+            <div class="card review-card">
+              <div class="card-body">
+                <h5 class="card-title">Review 4</h5>
+                <p class="card-text">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+                  vitae elit libero, a pharetra augue.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+      <!-- <div
+        class="container review-cards-container d-flex justify-content-evenly"
+      >
+        <div class="review-cards row d-grid gap-3">
+          <div
+            class="card col-sm-6"
+            style="width: 18rem"
+          >
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <blockquote class="blockquote">
+                <p class="card-text">
+                  Some quick example text to build on the card title and make up
+                  the bulk of the card's content.
+                </p>
+                <footer class="blockquote-footer">Utente google</footer>
+              </blockquote>
+            </div>
+
+            <div class="card-body">
+              <a
+                href="#"
+                class="card-link"
+                >Card link</a
+              >
+            </div>
+          </div>
+          <div
+            class="card col-sm-6"
+            style="width: 18rem"
+          >
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <blockquote class="blockquote">
+                <p class="card-text">
+                  Some quick example text to build on the card title and make up
+                  the bulk of the card's content.
+                </p>
+                <footer class="blockquote-footer">Utente google</footer>
+              </blockquote>
+            </div>
+          </div>
+        </div>
+      </div> -->
+    </section>
+
+    <!-- map -->
+    <section id="map">
+      <div class="google-map-container">
+        <div class="google-map">
+          <p class="map-placeholder h1 text-center fw-bold">MAP PLACEHOLDER</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- contact form -->
+    <section id="contact-form">
+      <div class="form-container"></div>
+    </section>
+    <!-- footer -->
+    <footer
+      id="footer"
+      class="p-5 mt-3 bg-dark text-white text-center position-relative"
+    >
+      <div class="container">
+        <p class="lead">
+          Copyright &copy; Il mondo di Gina &mdash;
+          <span
+            x-data="{ currentYear : (new Date()).getFullYear() } "
+            x-text="currentYear"
+          ></span>
+        </p>
+        <a
+          href="#"
+          class="position-absolute bottom-0 end-0 p-5"
+          style="color: #f8f9fa"
+        >
+          <i class="fa-regular fa-circle-up h1"></i>
+        </a>
+        <div class="contacts"></div>
+        <div class="dev-page"></div>
+      </div>
+    </footer>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
